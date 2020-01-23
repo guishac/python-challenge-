@@ -20,12 +20,11 @@ with open("election_data.csv", "r") as csvfile:
     for row in csvreader:
         total_votes = total_votes + 1
         candidate = row[2]
-        if candidate not in candidate_votes:
-            candidate_votes.get(candidate)
+        if candidate in candidate_votes:
+            candidate_votes[candidate] = candidate_votes[candidate] + 1
+        else:
             candidate_votes[candidate] = 1
-        candidate_votes[candidate] = candidate_votes[candidate] + 1
-       
-            
+
 filename = ("election.txt")
 with open(filename, 'w') as txt_file:
     txt_file.write(filename)
@@ -43,9 +42,6 @@ with open(filename, 'w') as txt_file:
 
 # the winner of the election based on popular vote.
 for candidate in candidate_votes:
-
-    votes=candidate_votes.get(candidate)
-    vote_percentage=float(votes)/float(total_votes)*100
 
     if (votes > winner_votes):
         winner_votes = votes
